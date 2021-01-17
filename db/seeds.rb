@@ -10,4 +10,4 @@ user = User.first
 
 sat_words = user.study_guides.find_or_create_by(name: "SAT Words")
 
-flashcard_1 = sat_words.flashcards.find_or_create_by(cardfront: "antipathy", cardback: "a strong feeling of dislike", subject: "vocabulary", memorized: false)
+flashcard_1 = user.flashcards.find_or_create_by(cardfront: "antipathy", cardback: "a strong feeling of dislike", subject: "vocabulary", memorized: false, study_guide_id: sat_words.id)
