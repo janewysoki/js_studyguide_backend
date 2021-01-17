@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :flashcards
   resources :study_guides
   devise_for :users, path: '', path_names: {
     sign_in: 'login',

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_224315) do
+ActiveRecord::Schema.define(version: 2021_01_17_224912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "flashcards", force: :cascade do |t|
+    t.string "cardfront"
+    t.text "cardback"
+    t.string "subject"
+    t.boolean "memorized"
+    t.bigint "user_id", null: false
+    t.bigint "study_guide_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["study_guide_id"], name: "index_flashcards_on_study_guide_id"
+    t.index ["user_id"], name: "index_flashcards_on_user_id"
+  end
 
   create_table "study_guides", force: :cascade do |t|
     t.string "name"
@@ -37,5 +50,7 @@ ActiveRecord::Schema.define(version: 2021_01_17_224315) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "flashcards", "study_guides"
+  add_foreign_key "flashcards", "users"
   add_foreign_key "study_guides", "users"
 end
