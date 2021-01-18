@@ -3,7 +3,7 @@ class StudyGuidesController < ApplicationController
 
   # GET /study_guides
   def index
-    @study_guides = StudyGuide.all
+    @study_guides = current_user.study_guides #this will be so we can add auth later
 
     render json: StudyGuideSerializer.new(@study_guides).serializable_hash[:data].map{|hash| hash[:attributes]}
   end
