@@ -5,7 +5,7 @@ class StudyGuidesController < ApplicationController
   def index
     @study_guides = StudyGuide.all
 
-    render json: @study_guides
+    render json: StudyGuideSerializer.new(@study_guides).serializable_hash[:data].map{|hash| hash[:attributes]}
   end
 
   # GET /study_guides/1
