@@ -46,6 +46,6 @@ class StudyGuidesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def study_guide_params
-      params.require(:study_guide).permit(:name, :user_id)
+      params.require(:study_guide).permit(:name)
     end
 end
