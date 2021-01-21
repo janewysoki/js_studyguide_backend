@@ -15,7 +15,8 @@ class StudyGuidesController < ApplicationController
 
   # POST /study_guides
   def create
-    @study_guide = StudyGuide.new(study_guide_params)
+    #this is gonna assign user id to the current user's id
+    @study_guide = current_user.study_guides.build(study_guide_params)
 
     if @study_guide.save
       render json: @study_guide, status: :created, location: @study_guide
