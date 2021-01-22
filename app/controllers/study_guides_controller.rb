@@ -10,7 +10,8 @@ class StudyGuidesController < ApplicationController
 
   # GET /study_guides/1
   def show
-    render json: @study_guide
+    #byebug
+    render json: StudyGuideFlashcardSerializer.new(@study_guide, include: [:flashcards]).serializable_hash
   end
 
   # POST /study_guides
