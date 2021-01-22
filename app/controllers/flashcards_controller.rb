@@ -15,12 +15,12 @@ class FlashcardsController < ApplicationController
 
   # POST /flashcards
   def create
-    @flashcard = Flashcard.new(flashcard_params)
-
+    @flashcard = current_user.flashcards.build(flashcard_params)
+    byebug
     if @flashcard.save
-      render json: @flashcard, status: :created, location: @flashcard
+      render json: FlashcardSerializer.new(@flashcard).serializable_hash[:data][:attributes], status: :created, location: @flashcard
     else
-      render json: @flashcard.errors, status: :unprocessable_entity
+      render json: @flashcard.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
   end
 
