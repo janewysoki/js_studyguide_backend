@@ -21,7 +21,7 @@ class StudyGuidesController < ApplicationController
     if @study_guide.save
       render json: @study_guide, status: :created, location: @study_guide
     else
-      render json: @study_guide.errors, status: :unprocessable_entity
+      render json: @study_guide.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
   end
 
