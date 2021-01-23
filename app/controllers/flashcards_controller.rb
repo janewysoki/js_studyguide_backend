@@ -16,7 +16,7 @@ class FlashcardsController < ApplicationController
   # POST /flashcards
   def create
     @flashcard = current_user.flashcards.build(flashcard_params)
-    byebug
+    #byebug
     if @flashcard.save
       render json: FlashcardSerializer.new(@flashcard).serializable_hash[:data][:attributes], status: :created, location: @flashcard
     else
