@@ -27,9 +27,9 @@ class FlashcardsController < ApplicationController
   # PATCH/PUT /flashcards/1
   def update
     if @flashcard.update(flashcard_params)
-      render json: @flashcard
+      render json: FlashcardSerializer.new(@flashcard).serializable_hash[:data][:attributes]
     else
-      render json: @flashcard.errors, status: :unprocessable_entity
+      render json: @flashcard.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
   end
 
